@@ -1,4 +1,4 @@
-package ru.netology.qa65;
+package ru.netology.stats;
 
 public class Main {
     public static void main(String[] args) {
