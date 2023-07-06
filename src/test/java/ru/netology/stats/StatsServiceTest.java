@@ -16,8 +16,9 @@ public class StatsServiceTest {
         System.out.println("Сумма всех продаж: " + service.sumAllMonths(sales));
         System.out.println("Средняя сумма продаж в месяц: " + service.averageSalesAmount(sales));
         System.out.println("Номер месяца с максимальными продажами: " + service.maxSales(sales));
-        System.out.println("Продаж в месяце: " + service.minSalesAmount(sales));
-        System.out.println("Месяц с мин. продажами: " + service.minSales(sales));
+        System.out.println("Номер месяца с минимальными продажами: " + service.minSales(sales));
+        System.out.println("Кол-во месяцев с продажами ниже среднего: " + service.belowAverageSalesMonths(sales));
+        System.out.println("Кол-во месяцев с продажами выше среднего: " + service.aboveAverageSalesMonths(sales));
     }
 
 }

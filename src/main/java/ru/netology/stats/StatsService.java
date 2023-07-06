@@ -2,12 +2,10 @@ package ru.netology.stats;
 
 public class StatsService {
 
-
-    //номер месяца, в котором был минимум продаж, то есть осуществлены продажи на минимальную сумму*;
     //количество месяцев, в которых продажи были ниже среднего (см. п.2);
     //количество месяцев, в которых продажи были выше среднего (см. п.2).
 
-    public int sumAllMonths (int[] sales) {    //СУММА ВСЕХ ПРОДАЖ
+    public int sumAllMonths(int[] sales) {    //СУММА ВСЕХ ПРОДАЖ
         int totalSum = 0;
         for (int i = 0; i < sales.length; i++) {
             totalSum += sales[i];
@@ -15,12 +13,12 @@ public class StatsService {
         return totalSum;
     }
 
-    public int averageSalesAmount (int[] sales) {    //СРЕДНЯЯ СУММА ПРОДАЖ В МЕСЯЦ
+    public int averageSalesAmount(int[] sales) {    //СРЕДНЯЯ СУММА ПРОДАЖ В МЕСЯЦ
         int averageSum = (sumAllMonths(sales) / 12);
         return averageSum;
     }
 
-    public int maxSales(int[] sales) {  //номер месяца, в котором был пик продаж, то есть осуществлены продажи на максимальную сумму*;
+    public int maxSales(int[] sales) {  //НОМЕР МЕСЯЦА В КОТОРОМ БЫЛ ПИК ПРОДАЖ;
         int maxMonth = 0;
 
         for (int i = 0; i < sales.length; i++) {
@@ -29,35 +27,68 @@ public class StatsService {
             }
         }
 
-        return maxMonth + 1; // месяца нумеруются с 1, а индексы массива с 0, нужно сдвинуть ответ на 1
+        return maxMonth + 1;
     }
 
 
-    public int minSales(int[] sales) {
-        int minMonth = 0; // номер месяца с минимальными продажами среди просмотренных ранее
+    public int minSales(int[] sales) { //НОМЕР МЕСЯЦА С МИНИМАЛЬНЫМ КОЛИЧЕСТВОМ ПРОДАЖ;
+        int minMonth = 0;
 
         for (int i = 0; i < sales.length; i++) {
-            if (sales[i] <= sales[minMonth]) { // значит, в рассматриваемом i-м месяце продаж меньше
-                minMonth = i; // запомним его как минимальный
+            if (sales[i] <= sales[minMonth]) {
+                minMonth = i;
             }
         }
 
-        return minMonth + 1; // месяца нумеруются с 1, а индексы массива с 0, нужно сдвинуть ответ на 1
+        return minMonth + 1;
     }
 
-    public int minSalesAmount (int[] sales) {
-        int minSalesAmount = sales[0];
-        for ( int t : sales) {
-            if (t < minSalesAmount) {
-                minSalesAmount = t;
+    public int belowAverageSalesMonths(int[] sales) {    //СУММА МЕСЯЦЕВ С ПРОДАЖАМИ НИЖЕ СРЕДНЕГО
+
+        int belowAverage = 0;
+        int average = averageSalesAmount(sales);
+
+        for (int i = 0; i < sales.length; i++) {
+            if (sales[i] < average) {
+                belowAverage++;
             }
         }
-        return minSalesAmount;
+        return belowAverage;
+    }
+    public int aboveAverageSalesMonths(int[] sales) {    //СУММА МЕСЯЦЕВ С ПРОДАЖАМИ ВЫШЕ СРЕДНЕГО
+
+        int aboveAverage = 0;
+        int average = averageSalesAmount(sales);
+
+        for (int i = 0; i < sales.length; i++) {
+            if (sales[i] > average) {
+                aboveAverage++;
+            }
+        }
+        return aboveAverage;
     }
 
-    public int minSalesAmount2 (int[] sales) {
-        int minSalesAmount = minSalesAmount(sales);
-        return sales[minSalesAmount];
-      }
+
 
 }
+
+
+
+
+
+//    public int minSalesAmount (int[] sales) {
+//        int minSalesAmount = sales[0];
+//        for ( int t : sales) {
+//            if (t < minSalesAmount) {
+//                minSalesAmount = t;
+//            }
+//        }
+//        return minSalesAmount;
+//    }
+//
+//    public int minSalesAmount2 (int[] sales) {
+//        int minSalesAmount = minSalesAmount(sales);
+//        return sales[minSalesAmount];
+//      }
+//
+//}
